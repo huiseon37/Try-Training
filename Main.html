@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Try Training</title>
+<link type = "text/css" rel = "stylesheet" href="Main_style.css">
+<style type="text/css">
+
+h1 {
+	font-family: 나눔스퀘어_ac,sans_serif;
+	font-size: 2em;
+}
+
+</style>
+<script type="text/javascript">
+var videoArray = [["<iframe width=70% height=500 src='https://www.youtube.com/embed/YCh1fo4OGZ0' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=70% height=500 src='https://www.youtube.com/embed/T-bVqdhqW2U' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=70% height=500 src='https://www.youtube.com/embed/qpZSh5nwlLo' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=70% height=500 src='https://www.youtube.com/embed/yAv5Q_tEfkI' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"],
+	
+	["<iframe width=70% height=500 src='https://www.youtube.com/embed/xQVQn6l6Iu4' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=70% height=500 src='https://www.youtube.com/embed/zcQ16cfJN9Q' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=70% height=500 src='https://www.youtube.com/embed/T9jMXWFauhs' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"],
+	
+	["<iframe width=70% height=500 src='https://www.youtube.com/embed/i0N3EsK_NQ4' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=70% height=500 src='https://www.youtube.com/embed/EIT77uqQ2yo' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=70% height=500 src='https://www.youtube.com/embed/n7gwOVyX3nA' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=70% height=500 src='https://www.youtube.com/embed/nQlbDogfCpE' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"]];
+function random() {
+	var ranA = Math.floor(Math.random()*3);
+	var ranB = Math.floor(Math.random()*4);
+	
+	if(ranA == 1 && ranB == 3)
+		random();
+	
+	var recog = document.getElementById("recTrain");
+	recog.innerHTML = "<h1>오늘의 추천 운동 </h1>"+videoArray[ranA][ranB];
+}
+
+</script>
+</head>
+
+<body onload = "random();">
+<div id = "all">
+	<header id = "header">
+		<div id = "title">
+			<a href="Main.html"><img style="margin-top:60px;" src="media/logo_1.png" width="480" height="110"></a>			
+		</div>
+	</header>
+	<nav id="menu">
+			<ul>
+				<li><a href="MyBodyCheck.html">My Body Check</a></li>
+				<li><a href="Recommend.html">운동법 추천</a></li>
+				<li><a href="Calender.html">나의 운동 일지</a></li>
+				<li><a href="Map.html">운동 코스 추천</a></li>
+				<li><a href="community.html">커뮤니티</a></li>
+			</ul>
+	</nav>
+
+	<section id = "section">
+		
+		<article id = "pic">
+			<img src="media/mainphoto.png" width = "1000px" height = "500px"></img>
+		</article>
+		<br><br>
+	</section>
+	
+	<section>
+		<article id = "recTrain">
+		</article>
+	</section>
+	
+</div>
+<footer id = "footer">
+		
+		<div id = "copyright">
+			<br><br>
+			COPYRIGHT(C) SEAONE HUISEON ALL RIGHTS RESERVED.
+		</div>
+	</footer>
+
+</body>
+</html>

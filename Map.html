@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Try Training</title>
+<link type = "text/css" rel = "stylesheet" href="Main_style.css">
+<style type="text/css">
+h1 {
+   font-family: 나눔스퀘어_ac,sans_serif;
+   font-size: 1.5em;
+}
+section {
+	display : inline-block;
+	padding : 20px;
+}
+#pos {
+	border : 2px dashed #b0b0b0;
+	width : 1000px;
+	font-family: 나눔스퀘어_ac,sans_serif;
+	font-size: 1.1em;
+	align:left;
+	line-height: 1.5em;
+	padding-bottom:20px;
+}
+</style>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fadff085beab740c71fec3e6176bb878"></script>
+</head>
+<body>
+<div id = "all">
+   <header id = "header">
+      <div id = "title">
+         <a href="Main.html"><img style="margin-top:60px;" src="media/logo_1.png" width="480" height="110"></a>         
+      </div>
+   </header>
+   <nav id="menu">
+         <ul>
+            <li><a href="MyBodyCheck.html">My Body Check</a></li>
+            <li><a href="Recommend.html">운동법 추천</a></li>
+            <li><a href="Calender.html">나의 운동 일지</a></li>
+            <li><a href="Map.html" style="color:white; text-shadow : 0px 0px 5px black;">운동 코스 추천</a></li>
+            <li><a href="community.html">커뮤니티</a></li>
+         </ul>
+   </nav>
+
+   <section id = "section">
+      <div id="map" style="width:1000px;height:600px;"></div>
+      <script>
+      var mapContainer = document.getElementById('map'),
+      mapOption = { 
+          center: new kakao.maps.LatLng(33.450701, 126.570667),
+          level: 8
+      }; 
+
+      var map = new kakao.maps.Map(mapContainer, mapOption);
+
+      if (navigator.geolocation) {
+
+      navigator.geolocation.getCurrentPosition(function(position) {
+    
+       var lat = position.coords.latitude,
+           lon = position.coords.longitude;
+    
+       var locPosition = new kakao.maps.LatLng(lat, lon), 
+           message = '<div style="padding:5px;">여기에 계신가요?!</div>';
+    
+       displayMarker(locPosition, message);
+        
+        });
+
+      }
+      else {
+
+      var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
+          message = 'geolocation을 사용할수 없어요..'
+    
+      displayMarker(locPosition, message);
+      }
+
+      function displayMarker(locPosition, message) {
+
+         var marker = new kakao.maps.Marker({  
+             map: map, 
+             position: locPosition
+         }); 
+
+         var iwContent = message,
+             iwRemoveable = true;
+
+         var infowindow = new kakao.maps.InfoWindow({
+             content : iwContent,
+             removable : iwRemoveable
+         });
+
+         infowindow.open(map, marker);
+
+         map.setCenter(locPosition);      
+      }
+      
+      var positions = [
+          {
+              title: '반포대교 달빛무지개분수', 
+              latlng: new kakao.maps.LatLng(37.512593, 126.997992),
+              explain : '<div id="pos"><h1>반포대교 달빛무지개분수</h1>찾아가는 법: 대중교통을 이용한다면 4, 7, 9호선 환승역인 고속버스터미널역이 반포지구에서 가깝다.<br>자가용을 이용한다면 한강공원 잠원지구 주차장(주소: 서울 서초구 잠원동 120-1)이나 한강고수부지 공원주차장(주소: 서울 서초구 반포동 115-5)을 이용하면 된다.<br>주차요금은 최초 30분 1000원이고 초과 10분당 200원이다.<br><br>라이딩 팁: 고속버스터미널역 8-1번 출구와 신반포아파트 114동 앞에 서초구에서 운영하는 공공자전거 대여소가 있다.<br>서초공공자전거에서 위치와 대여 가능 자전거 수를 확인할 수 있다.<br>한강시민공원 반포나들목 옆에 반포한강공원 자전거대여소가 있다.2인용 자전거 대여료는 1시간에 6000원이고 한강자전거 대여시스템(hangangbike.go.kr)에서 한강 인근의 자전거 대여소 정보를 확인할 수 있다.<br><br>반포 달빛무지개분수는 4~6월 휴일 12:00, 19:30, 20:00, 20:30, 21:00분에 물을 뿜는다.'
+         },
+          {
+              title: '서울숲', 
+              latlng: new kakao.maps.LatLng(37.544432, 127.037448),
+              explain : '<div id="pos"><h1>서울숲</h1>찾아가는 법: 자전거로는 한강자전거길 북단 성수대교 아래에서 서울숲 지하통로를 지나서 공원으로 들어갈 수 있다.<br>자가용으로 이동한다면 서울숲 주차장(주소: 서울 성동구 성수동1가 643)을 이용하면 된다. 주차요금은 5분에 150원이다.<br>지하철은 2호선 뚝섬역 3번 출구에서 걸어서 15분 거리이고 분당선 서울숲역 3번 출구에서는 걸어서 5분 거리다.<br><br>라이딩 팁: 자전거 대여-서울숲역 4번 출구와 서울숲 남문 버스정류소에 서울공영 자전거 대여소가 있다.<br>대여소 위치는 서울공공자전거 누리집(www.bikeseoul.com)에서 확인하면 된다. 공원 출입구 1, 2, 5번 쪽에도 사설 대여소가 두곳 있다.<br>1인자전거는 1시간에 3000원이고 종일은 1만원이다.</div>'
+          },
+          {
+              title: '월드컵공원', 
+              latlng: new kakao.maps.LatLng(37.563975, 126.897327),
+              explain : '<div id="pos"><h1>월드컵공원</h1>찾아가는 법: 난지 한강공원 자전거길에서 난지 하늘다리를 건너 공원으로 들어갈 수 있다.<br>자가용을 이용한다면 난지천공원주차장(주소: 마포구 상암동 1538-24, 요금: 5분당 150원)에 주차하면 된다.<br>지하철을 탄다면, 6호선 월드컵경기장역이나 디지털미디어시티역에서 내리면 된다.<br><br>라이딩 팁: 월드컵공원을 자전거로 돌아보는 것은 아무 때나 해도 되지만 노을·하늘공원 위로 올라가는 것은 주말과 공휴일에는 안 된다.<br>자전거는 평일에만 출입할 수 있다. 지하철역과 상암3단지 아파트 그리고 상암DMC 곳곳에 서울공공자전거 대여소가 설치되어 있다.</div>'
+          },
+          {
+              title: '동작대교', 
+              latlng: new kakao.maps.LatLng(37.509905, 126.981565),
+              explain : '<div id="pos"><h1>동작대교</h1>길이 : 5 km<br>난이도 : 중하<br><br>평탄한 코스가 강변을 따라 뻗어 있어 가볍게 산책과 러닝을 즐기는 사람들에게 최적의 코스입니다.<br><br>달리면서 보이는 넓은 한강과 건너편의 남산의 모습이 어우러져 어느새 도심 속에서 자연을 즐길 수 있는 스스로를 발견하게 되는 코스. <br>특히 다리를 건너지 않는 코스로 바로 옆에서 달리는 차들을 만날 일이 없다는 것이 장점입니다</div>'
+          },
+          {
+              title: '여의도공원', 
+              latlng: new kakao.maps.LatLng(37.523935, 126.918884),
+              explain : '<div id="pos"><h1>여의도공원</h1>길이 : 2.5km<br>난이도 : 하<br><br>여의도 공원은 남산 공원과 마찬가지로 발목과 무릎에 무리가 가지 않고 미끄럼 방지에도 효과적인 우레탄으로 포장된 길이 있습니다.<br><br>가장 큰 장점은 회사와 가까이 위치한 사람들은 퇴근 후 러닝을 바로 즐길 수 있다는 점입니다. 보행로가 따로 잘 조성되어 있는 점도 하나의 장점이죠.<br><br>여의도 공원은 다른 공원에 비해 단정한 느낌을 주며 고층 빌딩들의 은은한 빛을 받아 하루를 마무리하기에 아주 좋은 곳입니다.</div>'
+          },
+          {
+              title: '남산공원', 
+              latlng: new kakao.maps.LatLng(37.551342, 126.990867),
+              explain : '<div id="pos"><h1>남산공원</h1>길이 : 남측 순환로 8km<br>난이도 : 중상<br><br>남산이라고 하면 야경 명소로 유명한 곳이라 러너라면 누구나 이곳을 선망합니다.<br>초보자 러너부터 전문 러너까지 실력에 따른 코스가 있어  러너들의 성지라고 불리기도 하는데요.<br>특히, 오르막이 많고 내리막과 반복되는 남측 순환로 코스는 초보자에게는 힘든 코스일 수 있으니 주의하세요!</div>'
+          },
+          {
+              title: '아차산', 
+              latlng: new kakao.maps.LatLng(37.571439, 127.103677),
+              explain : '<div id="pos"><h1>아차산</h1>아차산정산길<br>아차산 과리사무소부터 용마산정상에 이르는 코스 / 3.6km / 2시간 10분 소요<br><br>아차산성길<br>워커힐아파트에서 낙타고개에 이르는 등산코스 / 0.8km / 50분 소요<br><br>고구려정길<br>영화사입구부터 고구려정까지의 코스 / 0.7km / 30분 소요<br><br>해맞이길<br>기원정사에서 해맞이광장까지의 코스 / 0.7km / 30분 소요<br><br>긴고랑길<br>긴고랑공원부터 긴고랑정상에 이르는 코스 / 1.4km / 70분 소요<br><br>아차산둘레길<br>평강교부터 뻥튀기공원까지의 코스 / 3.7km / 90분 소요</div>'
+          },
+          {
+              title: '북한산', 
+              latlng: new kakao.maps.LatLng(37.661307, 126.993333),
+              explain : '<div id="pos"><h1>북한산</h1>북한산성코스<br>북한산성 탐방지원 센터 부터 백운대에 이르는 코스 / 3.4km / 2시간 40분 소요<br><br>비봉코스<br> 비봉 탐방지원 센터 부터 비봉에 이르는 코스 / 2.0km / 1시간 소요<br><br>백운대코스<br> 백운대 탐방지원 센터 부터 백운대에 이르는 코스 / 1.9km / 1시간 30분 소요<br> <br>보국문코스<br> 정릉 탐방지원 센터 부터 보국문에 이르는 코스 / 2.4km / 1시간 30분 소요<br><br> 대동문코스<br>백련공원 지킴터 부터 대동문에 이르는 코스 / 2.7km / 1시간 10분 소요<br><br>신선대코스<br>도봉 탐방지원 센터 부터 신선대에 이르는 코스 / 3.3km / 1시간 40분 소요</div>'
+          },
+          {
+              title: '관악산', 
+              latlng: new kakao.maps.LatLng(37.443346, 126.961174),
+              explain : '<div id="pos"><h1>관악산</h1>서울대코스<br>서울대학교 입구에서 연주대에 이르는 코스 / 9.21km / 5시간 40분 소요<br><br>신림역코스<br>신림역부터 연주대에 이르는 코스 / 5.0km / 3시간 소요<br><br>과천코스<br>과천에서 연주대에 이르는 코스 / 9.0km / 5시간 소요</div>'
+          }
+      ];
+
+      var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+          
+      for (var i = 0; i < positions.length; i ++) {
+          
+          var imageSize = new kakao.maps.Size(24, 35); 
+            
+          var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+          
+          var marker = new kakao.maps.Marker({
+              map: map,
+              position: positions[i].latlng,
+              title : positions[i].title,
+              image : markerImage
+          });
+          
+          sessionStorage.setItem(positions[i].latlng.getLat(), positions[i].explain);
+         
+          kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker));
+      }
+      
+      function makeClickListener(map, marker){
+    	  return function(){
+    		  var lat = marker.getPosition();
+    		  lat = lat.getLat();
+    		  lat = lat.toFixed(6);
+    	      var explain = sessionStorage.getItem(lat);
+    	      road.innerHTML = explain;
+    	  };
+      }
+      </script>
+   </section>
+   <section>
+   <div id = "road"></div>
+   </section>
+
+</div>
+<footer id = "footer">
+      <div id = "copyright">
+         <br><br>
+         COPYRIGHT(C) SEAONE HUISEON ALL RIGHTS RESERVED.
+      </div>
+   </footer>
+</body>
+</html>

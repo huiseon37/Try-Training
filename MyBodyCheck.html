@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Try Training</title>
+<link type = "text/css" rel = "stylesheet" href="Main_style.css">
+<style type="text/css">
+
+section > header  {
+	font-family: 나눔스퀘어_ac,sans_serif;
+	font-size: 1.5em;
+}
+#bmi {
+	border : 2px dashed #b0b0b0;
+}
+#basic {
+	border : 2px dashed #b0b0b0;
+}
+#form {
+	display: inline-block;
+	width : 60%;
+}
+#formBasic {
+	display: inline-block;
+	width : 60%;
+}
+#resultBmi {
+	display: inline-block;
+	font-size : 2em;
+	width : 35%;
+}
+#resultBasic {
+	display: inline-block;
+	font-size : 2em;
+	width : 35%;
+}
+
+</style>
+<script>
+function calBmi() {
+	   
+	   var sex = document.getElementsByName("sexBmi");
+	   var kg = document.getElementById("kgBmi");
+	   var cm = document.getElementById("cmBmi");
+	   var result = document.getElementById("resultBmi");
+	   var found = null;
+	   
+	   kg = parseInt(kg.value);
+	   cm = parseInt(cm.value);
+	   var m = cm*0.01;
+	   
+	   for(var i=0;i<sex.length;i++){
+	      if(sex[i].checked == true){
+	         found = sex[i];
+	         break;
+	      }
+	   }
+	   
+	   if(found.value == "0"){
+	      var num = 1.1;
+	   }
+	   else{
+	      var num = 1.07;
+	   }
+	   
+	   var fin = kg/(m**2);
+
+	   resultBmi.innerHTML = fin.toFixed(1);
+	   imgbmi.innerHTML = "<img src='media/bmi.png' width ='100%' height ='100%'>";
+	}
+
+	function calBasic() {
+	   
+	   var age = document.getElementById("ageBasic");
+	   var sex = document.getElementsByName("sexBasic");
+	   var kg = document.getElementById("kgBasic");
+	   var cm = document.getElementById("cmBasic");
+	   var result = document.getElementById("resultBasic");
+	   var found = null;
+	   
+	   kg = parseInt(kg.value);
+	   cm = parseInt(cm.value);
+	   age = parseInt(age.value);
+	   
+	   for(var i=0;i<sex.length;i++){
+	      if(sex[i].checked == true){
+	         found = sex[i];
+	         break;
+	      }
+	   }
+	   
+	   if(found.value == "0"){
+	      var fin = 66.47 + (13.75 * kg) + ( 5*cm)-(6.76*age);
+	      
+
+	   }
+	   else{
+	      var fin = 655.1 + (9.56 * kg) + (1.85 * cm) - (4.68*age);
+	   }
+	   
+	   
+	   resultBasic.innerHTML=fin.toFixed(1);
+	   imgbasic.innerHTML = "<img src='media/basic.png' width ='100%' height ='100%'>";
+
+	}
+</script>
+</head>
+
+<body>
+<div id = "all">
+	<header id = "header">
+		<div id = "title">
+			<a href="Main.html"><img style="margin-top:60px;" src="media/logo_1.png" width="480" height="110"></a>			
+		</div>
+	</header>
+	<nav id="menu">
+			<ul>
+				<li><a href="MyBodyCheck.html" style="color:white; text-shadow : 0px 0px 5px black;">My Body Check</a></li>
+				<li><a href="Recommend.html">운동법 추천</a></li>
+				<li><a href="Calender.html">나의 운동 일지</a></li>
+				<li><a href="Map.html">운동 코스 추천</a></li>
+				<li><a href="community.html">커뮤니티</a></li>
+			</ul>
+	</nav>
+	
+	<section id = "section">
+		<header id = "bmi_title">
+			<h1>BMI 측정</h1>
+		</header>
+		<article id = "bmi">
+				<form id = "form">
+					<p>
+					<table align = "center" style = "text-align : center;">
+					<tr>
+					<td>성별:</td>
+					<td style="text-align : left">
+					<label><input type="radio" name="sexBmi" value="0" checked>남</label>
+					<label><input type="radio" name="sexBmi" value="1">여</label>
+					</td>
+					</tr>
+					<tr>
+					<td>체중:</td>
+					<td>
+					<label><input id="kgBmi" type="text" size="15"> kg</label>
+					</td>
+					</tr>
+					<tr>
+					<td>키:</td>
+					<td>
+					<label><input id="cmBmi" type="text" size="15"> cm</label>
+					</td>
+					</tr>
+					</table>
+					</p>
+					
+					<p>
+					<label><button id = 'btn' type="button" onclick = "calBmi()">내 BMI는?</button></label>
+					</p>
+					<p id="resultBmi"></p>
+					<p id="imgbmi"></p>
+				</form>
+				
+		</article>
+	</section>
+	<section>
+		<header id = "basic_title">
+			<h1>기초대사량 측정</h1>
+		</header>
+		<article id = "basic">
+         <form id = "formBasic">
+         	<p>
+            <table align = "center" style = "text-align : center;">
+            <tr>
+            <td>나이:</td>
+          	<td>
+            <label><input id="ageBasic" type="text" size="15"> 살</label>
+            </td>
+            </tr>
+            <tr>
+            <td>성별:</td>
+            <td style="text-align : left">
+            <label><input type="radio" name="sexBasic" value="0" checked>남</label>
+            <label><input type="radio" name="sexBasic" value="1">여</label>
+            </td>
+            </tr>
+            <tr>
+            <td>체중:</td>
+            <td>
+            <label><input id="kgBasic" type="text" size="15"> kg</label>
+            </td>
+            </tr> 
+            <tr>
+            <td>키:</td>
+            <td>
+            <label><input id="cmBasic" type="text" size="15"> cm</label>
+            </td>
+            </tr>
+            </table>
+            </p>
+
+            <p>
+            <label><button id = 'btn' type="button" onclick = "calBasic()">내 기초대사량은?</button></label>
+            </p>
+            <p id="resultBasic"></p>
+            <p id="imgbasic"></p>
+         </form>
+      </article>
+	</section>
+	
+</div>
+<footer id = "footer">
+		
+		<div id = "copyright">
+			<br><br>
+			COPYRIGHT(C) SEAONE HUISEON ALL RIGHTS RESERVED.
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Try Training</title>
+<link type = "text/css" rel = "stylesheet" href="Main_style.css">
+<style type="text/css">
+#aside {
+float : left;
+	display:inline-block;
+	border : 2px dashed #b0b0b0;
+	width : 15%;
+	height : 650px;
+	margin-right : 10px;
+	margin-left : 15px;
+}
+
+section {
+	display:inline-block;
+	border : 2px dashed #b0b0b0;
+	width: 80%;
+	height : 650px;
+	overflow : scroll;
+}
+aside ul {
+   list-style-type:none;
+   text-align: center;
+   margin:20;
+   padding:20;
+   background-color:white;
+
+   font-family: a옛날사진관4, sans_serif;
+   font-size:1.7em;
+}
+
+aside ul li {
+   padding-top: 80px;
+   padding-bottom: 80px;
+   padding-left: 30px;
+   padding-right: 70px;
+}
+li:hover {
+	color:white;
+	text-shadow : 0px 0px 5px black;
+}
+
+#newul {
+	list-style-type:none;
+   text-align: center;
+   margin:20;
+   padding-bottom:10px;
+   border-bottom-style: outset ;
+
+   font-family: a옛날사진관4, sans_serif;
+   font-size:1.5em;
+}
+#newul li {
+	display:inline-block;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   padding-left: 90px;
+   padding-right: 90px;
+}
+
+article {
+	padding-top : 10px;
+	padding-bottom : 10px;
+}
+</style>
+<script>
+var sportArray = [["가슴","팔","겨드랑이","어께"],["등","배","허리"],["엉덩이","허벅지","종아리","골반"]];
+var videoArray = [["<iframe width=90% height=600 src='https://www.youtube.com/embed/YCh1fo4OGZ0' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=90% height=600 src='https://www.youtube.com/embed/T-bVqdhqW2U' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=90% height=600 src='https://www.youtube.com/embed/qpZSh5nwlLo' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=90% height=600 src='https://www.youtube.com/embed/yAv5Q_tEfkI' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"],
+	
+	["<iframe width=90% height=600 src='https://www.youtube.com/embed/xQVQn6l6Iu4' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=90% height=600 src='https://www.youtube.com/embed/zcQ16cfJN9Q' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=90% height=600 src='https://www.youtube.com/embed/T9jMXWFauhs' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"],
+	
+	["<iframe width=90% height=600 src='https://www.youtube.com/embed/i0N3EsK_NQ4' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=90% height=600 src='https://www.youtube.com/embed/EIT77uqQ2yo' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=90% height=600 src='https://www.youtube.com/embed/n7gwOVyX3nA' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+	"<iframe width=90% height=600 src='https://www.youtube.com/embed/nQlbDogfCpE' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"]];
+
+function show(obj) {
+	var ul = document.getElementById("newul");
+	var article = document.getElementById("newarticle"); 
+	if(ul !== null) {
+		ul.parentNode.removeChild(ul);
+		article.parentNode.removeChild(article);
+	}
+	
+	var num = parseInt(obj.id);
+	var section = document.getElementById("section");
+	var ul=document.createElement('ul');
+	
+	ul.setAttribute("id", "newul");
+	section.appendChild(ul);
+
+	
+	for (var i=0; i<sportArray[num].length; i++){
+	    var li=document.createElement('li');
+	    li.setAttribute("id", i);
+	    ul.appendChild(li);
+	    
+	    li.innerHTML=li.innerHTML + sportArray[num][i];
+	    li.onclick = function () { sessionStorage.setItem("firstarray", num);
+	   								sessionStorage.setItem("secondarray", this.id);
+	   								video();};
+	    
+	}
+}
+
+function video() {
+	var n = sessionStorage.getItem("firstarray");
+	var m = sessionStorage.getItem("secondarray");
+	
+	var article = document.getElementById("newarticle");
+	if(article !== null) {
+		article.parentNode.removeChild(article);
+	}
+	
+	var section = document.getElementById("section");
+	var article=document.createElement('article');
+	
+	article.setAttribute("id", "newarticle");
+	section.appendChild(article);
+	
+	article.innerHTML = article.innerHTML + videoArray[n][m];
+
+	
+}
+</script>
+</head>
+
+<body>
+<div id = "all">
+	<header id = "header">
+		<div id = "title">
+			<a href="Main.html"><img style="margin-top:60px;" src="media/logo_1.png" width="480" height="110"></a>			
+		</div>
+	</header>
+	<nav id="menu">
+			<ul>
+				<li><a href="MyBodyCheck.html">My Body Check</a></li>
+				<li><a href="Recommend.html" style="color:white; text-shadow : 0px 0px 5px black;">운동법 추천</a></li>
+				<li><a href="Calender.html">나의 운동 일지</a></li>
+				<li><a href="Map.html">운동 코스 추천</a></li>
+				<li><a href="community.html">커뮤니티</a></li>
+			</ul>
+	</nav>
+	<div id = "div">
+	<aside id = "aside"> 
+		<ul>
+			<li id ="0" onclick="show(this)">상체</li>
+			<li id ="1" onclick="show(this)">몸통</li>
+			<li id ="2" onclick="show(this)">하체</li>
+		</ul>
+	</aside>
+	<section id = "section">
+		
+	</section>
+	</div>
+</div>
+<footer id = "footer">
+		
+		<div id = "copyright">
+			<br><br>
+			COPYRIGHT(C) SEAONE HUISEON ALL RIGHTS RESERVED.
+		</div>
+	</footer>
+
+
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Try Training</title>
+<link type = "text/css" rel = "stylesheet" href="Main_style.css">
+<style type="text/css">
+#table {
+	border : 4px solid #949494;
+	border-collapse:collapse;
+	border-radius : 5px;
+	font-size : 1.2em;
+}
+#table tr {
+	height : 30px;
+}
+
+</style>
+<script>
+function move(url) {
+	location.href=url;
+}
+
+function run() {
+	var title = document.getElementById("title_c");
+	var writer = document.getElementById("writer");
+	var date = document.getElementById("date");
+	var text = document.getElementById("text");
+	var titleKey = localStorage.getItem("read");
+	title.innerHTML = titleKey;
+	
+	var val = localStorage.getItem(titleKey);
+	var writerDateText = val.split(";");
+	
+	writer.innerHTML = writerDateText[0];
+	date.innerHTML = writerDateText[1];
+	text.innerHTML = writerDateText[2];
+}
+function remove() {
+	var title = document.getElementById("title_c").innerHTML;
+	alert("삭제 되었습니다.");
+	localStorage.removeItem(title);
+	move('community.html');
+}
+
+</script>
+
+</head>
+<body onload="run();">
+<div id = "all">
+	<header id = "header">
+		<div id = "title">
+			<a href="Main.html"><img style="margin-top:60px;" src="media/logo_1.png" width="480" height="110"></a>			
+		</div>
+	</header>
+	
+	<nav id="menu">
+			<ul>
+				<li><a href="MyBodyCheck.html">My Body Check</a></li>
+				<li><a href="Recommend.html" >운동법 추천</a></li>
+				<li><a href="Calender.html">나의 운동 일지</a></li>
+				<li><a href="Map.html">운동 코스 추천</a></li>
+				<li><a href="community.html" style="color:white; text-shadow : 0px 0px 5px black;">커뮤니티</a></li>
+			</ul>
+	</nav>
+	<section>
+	<header id = "bmi_title">
+			<h1>글 읽기</h1>
+	</header>
+		<form name="BoardViewForm" method="post">
+		<table align = "center" width = 1000>
+			<tr>
+			<td colspan=2>
+			<table id = "table" border="1" summary="목록 테이블 구성" width = 1000> 
+			<tr> 
+				<td align=center bgcolor=#dddddd> 제 목</td>
+				<td id = "title_c"colspan=3></td>
+   			</tr>
+   			<tr> 
+				<td align=center bgcolor=#dddddd width=100> 작성자</td>
+				<td id = "writer" width=40%></td>
+				<td align=center bgcolor=#dddddd width=100> 작성일</td>
+				<td id = "date" width=40%></td>
+			</tr>
+   			<tr> 
+				<td id = "text" colspan=4 align=left valign=top height = "200px"><br><br></td>
+   			</tr>
+			</table>
+			</td>
+ 			</tr>
+			<tr>
+				<td align=center colspan=2> 
+				<hr size=1>
+				<div align="center">
+				<input id = "btn" type="button" value="목록" onclick="move('community.html');"> |
+				<input id = "btn" type="button" value="삭제" onclick="remove()"><br>
+				</div>
+				</td>
+			</tr>
+		</table>
+		</form>
+	</section>
+	
+</div>
+
+<footer id = "footer">
+		<div id = "copyright">
+			<br><br>
+			COPYRIGHT(C) SEAONE HUISEON ALL RIGHTS RESERVED.
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Try Training</title>
+<link type = "text/css" rel = "stylesheet" href="Main_style.css">
+
+</head>
+<style type="text/css">
+section > header  {
+	font-family: 나눔스퀘어_ac,sans_serif;
+	font-size: 1.5em;
+}
+</style>
+<script>
+function move(url) {
+	location.href=url;
+}
+
+function printDate() {
+	var span = document.getElementById("date");
+	var today = new Date();
+	var str = today.getFullYear() + "." 
+			+ (today.getMonth()+1) + "."
+			+ today.getDate(); 
+	span.innerHTML = str;
+}
+
+function store() {
+	if(!window.localStorage) {
+		alert("");
+		return;
+	}
+	var date = document.getElementById("date").innerHTML;
+	var writer = document.getElementById("writer").value;
+	var title = document.getElementById("title_c").value;
+	var content = document.getElementById("content").value;
+	
+	
+	var value = writer+";"+date+";"+content;
+	
+	if(title == "" || value == "") {
+		alert("글을 입력하세요.");
+		return;
+	}
+	else {
+		move('community.html');
+		alert("등록 되었습니다.");
+		localStorage.setItem(title, value);
+		
+	}
+	
+}
+
+</script>
+<body onload="printDate();">
+<div id = "all">
+	<header id = "header">
+		<div id = "title">
+			<a href="Main.html"><img style="margin-top:60px;" src="media/logo_1.png" width="480" height="110"></a>			
+		</div>
+	</header>
+	
+	<nav id="menu">
+		<ul>
+			<li><a href="MyBodyCheck.html">My Body Check</a></li>
+			<li><a href="Recommend.html" >운동법 추천</a></li>
+			<li><a href="Calender.html">나의 운동 일지</a></li>
+			<li><a href="Map.html">운동 코스 추천</a></li>
+			<li><a href="community.html" style="color:white; text-shadow : 0px 0px 5px black;">커뮤니티</a></li>
+		</ul>
+	</nav>
+	<section id ="section">
+	<header id = "bmi_title">
+		<h1>게시판 글쓰기</h1>
+	</header>
+		<form id = "form" method = get>
+		<table class = "table" align ="center" style = "text-align : left;">
+    		<tr style="text-align : left;">
+				<td>작성자</td>
+				<td ><input id = "writer" type="text" name="name" maxlength=30></td>
+				<td style = "width:50px;">날짜</td>
+				<td style = "width:70px;"><span id ='date'></span></td>
+			</tr>
+    		<tr>
+     			<td>제 목</td>
+     			<td colspan="3"><input id = "title_c" type="text" name="title_c" size="98%" align = "left"></td>
+    		</tr>
+    		<tr>
+     			<td>내 용</td>
+     			<td colspan="3"><textarea id = "content" name="content" rows ="10" cols="100"></textarea></td>
+    		</tr>
+    		<tr>
+     			<td colspan=4><hr size=1></td>
+    		</tr>
+    		<tr>
+     			<td colspan="4">
+     			<div align="center">
+     			<input id = "btn" type="submit" value="등록" onclick="store();">
+     			<input id = "btn" type="button" value="목록" onclick="move('community.html');">
+     			</div>
+     			</td>
+    		</tr>
+		</table>
+		</form>
+	</section>
+</div>
+	<footer id = "footer">
+		<div id = "copyright">
+			<br><br>
+			COPYRIGHT(C) SEAONE HUISEON ALL RIGHTS RESERVED.
+		</div>
+	</footer>
+</body>
+</html>
